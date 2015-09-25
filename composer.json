@@ -11,9 +11,21 @@
             "email": "hschulz@aboutcoders.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:hasc/process-control.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:hasc/process-control-bundle.git"
+        }
+    ],
     "require": {
         "php": ">=5.3.2",
-        "symfony/symfony": "~2.1"
+        "symfony/symfony": "~2.1",
+        "sonata-project/notification-bundle": "~2.2",
+        "aboutcoders/process-control-bundle": "~1"
     },
     "require-dev": {
         "phpunit/phpunit": "~4"
