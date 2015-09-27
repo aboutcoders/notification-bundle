@@ -21,7 +21,7 @@ use Symfony\Component\Console\Output\Output;
  *
  * The implementation is heavily based on the default provided by sonata, only the way the iterator is used differs.
  *
- * @author Hannes Schulz <schulz@daten-bahn.de>
+ * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
  */
 class ConsumerHandlerCommand extends BaseCommand
 {

@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 /**
- * @author Hannes Schulz <schulz@daten-bahn.de>
+ * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
  */
 class AbcNotificationExtension extends Extension
 {

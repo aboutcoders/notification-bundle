@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * A Compiler pass that injects a custom iterator into the doctrine message manager backend.
  *
- * @author Hannes Schulz <schulz@daten-bahn.de>
+ * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
  */
 class MessageManagerBackendPass implements CompilerPassInterface
 {

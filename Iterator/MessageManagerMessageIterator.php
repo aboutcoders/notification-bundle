@@ -10,7 +10,7 @@ use Sonata\NotificationBundle\Model\MessageManagerInterface;
 /**
  * Custom implementation of MessageIteratorInterface that does not sleep if manager does not find any messages.
  *
- * @author Hannes Schulz <schulz@daten-bahn.de>
+ * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
  */
 class MessageManagerMessageIterator implements MessageIteratorInterface
 {

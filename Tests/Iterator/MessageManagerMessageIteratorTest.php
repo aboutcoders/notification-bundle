@@ -8,7 +8,7 @@ use Sonata\NotificationBundle\Model\MessageInterface;
 use Sonata\NotificationBundle\Model\MessageManagerInterface;
 
 /**
- * @author Hannes Schulz <schulz@daten-bahn.de>
+ * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
  */
 class MessageManagerMessageIteratorTest extends \PHPUnit_Framework_TestCase
 {

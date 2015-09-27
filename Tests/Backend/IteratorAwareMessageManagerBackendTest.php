@@ -7,6 +7,9 @@ use Sonata\NotificationBundle\Backend\MessageManagerBackend;
 use Sonata\NotificationBundle\Iterator\MessageIteratorInterface;
 use Sonata\NotificationBundle\Model\MessageManagerInterface;
 
+/**
+ * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
+ */
 class IteratorAwareMessageManagerBackendTest extends \PHPUnit_Framework_TestCase
 {
     private $iterator;

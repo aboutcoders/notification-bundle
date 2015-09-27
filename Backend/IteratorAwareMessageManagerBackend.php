@@ -6,7 +6,7 @@ use Sonata\NotificationBundle\Backend\MessageManagerBackend;
 use Sonata\NotificationBundle\Iterator\MessageIteratorInterface;
 
 /**
- * @author Hannes Schulz <schulz@daten-bahn.de>
+ * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
  */
 class IteratorAwareMessageManagerBackend extends MessageManagerBackend
 {

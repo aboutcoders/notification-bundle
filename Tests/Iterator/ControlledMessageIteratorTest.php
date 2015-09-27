@@ -7,7 +7,7 @@ use Abc\ProcessControl\Controller;
 use Sonata\NotificationBundle\Iterator\MessageIteratorInterface;
 
 /**
- * @author Hannes Schulz <schulz@daten-bahn.de>
+ * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
  */
 class ControlledMessageIteratorTest extends \PHPUnit_Framework_TestCase
 {

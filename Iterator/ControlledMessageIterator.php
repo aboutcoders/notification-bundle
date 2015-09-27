@@ -8,7 +8,7 @@ use Sonata\NotificationBundle\Iterator\MessageIteratorInterface;
 /**
  * A message iterator controlled by a Abc\ProcessControl\Controller.
  *
- * @author Hannes Schulz <schulz@daten-bahn.de>
+ * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
  * @see Abc\ProcessControl\Controller
  */
 class ControlledMessageIterator implements MessageIteratorInterface
