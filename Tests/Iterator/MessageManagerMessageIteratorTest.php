@@ -72,6 +72,13 @@ class MessageManagerMessageIteratorTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($subject->valid());
     }
 
+    public function testIsBufferEmpty()
+    {
+        $subject = new MessageManagerMessageIterator($this->manager, 10);
+        $this->initManager(array(), array(), 10);
+
+        $this->assertTrue($subject->isBufferEmpty());
+    }
 
     public static function getIteratorData()
     {

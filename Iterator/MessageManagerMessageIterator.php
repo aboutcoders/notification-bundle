@@ -10,7 +10,7 @@ use Sonata\NotificationBundle\Model\MessageManagerInterface;
 /**
  * Custom implementation of MessageIteratorInterface that does not sleep if manager does not find any messages.
  *
- * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
+ * @author Hannes Schulz <schulz@daten-bahn.de>
  */
 class MessageManagerMessageIterator implements MessageIteratorInterface
 {
@@ -101,6 +101,16 @@ class MessageManagerMessageIterator implements MessageIteratorInterface
     {
         $this->setCurrent();
         $this->position++;
+    }
+
+    /**
+     * Return true if the internal buffer is empty.
+     *
+     * @return bool
+     */
+    public function isBufferEmpty()
+    {
+        return 0 === count($this->buffer);
     }
 
     /**
