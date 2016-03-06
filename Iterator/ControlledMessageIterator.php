@@ -67,4 +67,21 @@ class ControlledMessageIterator implements MessageIteratorInterface
     {
         $this->messageIterator->rewind();
     }
+
+    /**
+     * Return true if the internal buffer is empty.
+     *
+     * @return bool
+     * @throws \Exception If method not implemented by message given iterator
+     * @see Sonata\NotificationBundle\Iterator\MessageManagerMessageIterator
+     */
+    public function isBufferEmpty()
+    {
+        if(!method_exists($this->messageIterator, 'isBufferEmpty'))
+        {
+            throw new \Exception(sprintf('Call to undefined method %s->isBufferEmpty', get_class($this->messageIterator)));
+        }
+
+        return $this->messageIterator->isBufferEmpty();
+    }
 } 
