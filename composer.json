@@ -2,28 +2,18 @@
     "name": "aboutcoders/notification-bundle",
     "type": "symfony-bundle",
     "description": "A symfony bundle that adds process control to the SonataNotificationBundle.",
-    "keywords": ["process", "control", "sonata", "notification"],
+    "keywords": ["process", "control", "sonata", "notification", "bundle", "ci", "continuous integration"],
     "homepage": "https://bitbucket.org/aboutcoders/notification-bundle",
-    "license": "AboutCoders",
+    "license": "MIT",
     "authors": [
         {
             "name": "Hannes Schulz",
             "email": "hannes.schulz@aboutcoders.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:hasc/process-control.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:hasc/process-control-bundle.git"
-        }
-    ],
     "require": {
         "php": ">=5.3.2",
-        "symfony/symfony": "~2.1",
+        "symfony/symfony": "~2.7|~3.0",
         "sonata-project/notification-bundle": "~2.3",
         "aboutcoders/process-control-bundle": "~1"
     },
@@ -32,7 +22,5 @@
     },
     "autoload": {
         "psr-4": { "Abc\\Bundle\\NotificationBundle\\": "" }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

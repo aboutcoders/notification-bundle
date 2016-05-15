@@ -1,4 +1,12 @@
 <?php
+/*
+* This file is part of the notification-bundle package.
+*
+* (c) Hannes Schulz <hannes.schulz@aboutcoders.com>
+*
+* For the full copyright and license information, please view the LICENSE
+* file that was distributed with this source code.
+*/
 
 namespace Abc\Bundle\NotificationBundle\Command;
 
@@ -10,11 +18,8 @@ use Sonata\NotificationBundle\Consumer\ConsumerInterface;
 use Sonata\NotificationBundle\Event\IterateEvent;
 use Sonata\NotificationBundle\Exception\HandlingException;
 use Sonata\NotificationBundle\Model\MessageInterface;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Output\Output;
 
 /**
  * Custom implementation of the command according to the custom iterator wired into the queue backend.

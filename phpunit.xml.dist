@@ -14,14 +14,10 @@
         >
 
     <testsuites>
-        <testsuite name="EnumSerializerBundle Test Suite">
+        <testsuite name="AbcNotificationBundle Test Suite">
             <directory>./Tests</directory>
         </testsuite>
     </testsuites>
-
-    <php>
-        <server name="KERNEL_DIR" value="./Tests/Fixtures/App/app" />
-    </php>
 
     <filter>
         <whitelist>

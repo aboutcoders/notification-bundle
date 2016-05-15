@@ -1,12 +1,17 @@
 <?php
+/*
+* This file is part of the notification-bundle package.
+*
+* (c) Hannes Schulz <hannes.schulz@aboutcoders.com>
+*
+* For the full copyright and license information, please view the LICENSE
+* file that was distributed with this source code.
+*/
 
 namespace Abc\Bundle\NotificationBundle\DependencyInjection;
 
-use Abc\Bundle\EnumBundle\Serializer\Handler\EnumHandler;
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 /**
  * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
