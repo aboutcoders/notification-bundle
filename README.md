@@ -1,7 +1,7 @@
 AbcNotificationBundle
 =====================
 
-A symfony bundle that adds process control to the SonataNotificationBundle and thereby allows to start/stop message processing in a continuous integration environment.
+A symfony bundle that adds process control to the [SonataNotificationBundle](https://github.com/sonata-project/SonataNotificationBundle) and thereby allows to start/stop message processing in a continuous integration environment.
 
 Build Status: [![Build Status](https://travis-ci.org/aboutcoders/notification-bundle.svg?branch=master)](https://travis-ci.org/aboutcoders/notification-bundle)
 
