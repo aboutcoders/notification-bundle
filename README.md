@@ -14,12 +14,8 @@ Follow the installation instructions of the required third party bundles:
 
 Add the AbcNotificationBundle to your `composer.json` file
 
-```json
-{
-    "require": {
-        "aboutcoders/notification-bundle": "dev-master"
-    }
-}
+```
+php composer.phar require aboutcoders/notification-bundle
 ```
 
 Include the bundle in the AppKernel.php class
