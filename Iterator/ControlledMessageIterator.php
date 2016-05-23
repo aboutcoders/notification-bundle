@@ -10,27 +10,27 @@
 
 namespace Abc\Bundle\NotificationBundle\Iterator;
 
-use Abc\ProcessControl\Controller;
+use Abc\ProcessControl\ControllerInterface;
 use Sonata\NotificationBundle\Iterator\MessageIteratorInterface;
 
 /**
  * A message iterator controlled by a Abc\ProcessControl\Controller.
  *
  * @author Hannes Schulz <hannes.schulz@aboutcoders.com>
- * @see Abc\ProcessControl\Controller
+ * @see    Abc\ProcessControl\Controller
  */
 class ControlledMessageIterator implements MessageIteratorInterface
 {
-    /** @var Controller */
+    /** @var ControllerInterface */
     private $controller;
     /** @var MessageIteratorInterface */
     private $messageIterator;
 
     /**
-     * @param Controller               $controller
+     * @param ControllerInterface      $controller
      * @param MessageIteratorInterface $smessageIterator
      */
-    function __construct(Controller $controller, MessageIteratorInterface $smessageIterator)
+    function __construct(ControllerInterface $controller, MessageIteratorInterface $smessageIterator)
     {
         $this->controller      = $controller;
         $this->messageIterator = $smessageIterator;
@@ -85,8 +85,7 @@ class ControlledMessageIterator implements MessageIteratorInterface
      */
     public function isBufferEmpty()
     {
-        if(!method_exists($this->messageIterator, 'isBufferEmpty'))
-        {
+        if (!method_exists($this->messageIterator, 'isBufferEmpty')) {
             throw new \Exception(sprintf('Call to undefined method %s->isBufferEmpty', get_class($this->messageIterator)));
         }
 

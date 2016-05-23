@@ -11,7 +11,7 @@
 namespace Abc\Bundle\NotificationBundle\Tests\Iterator;
 
 use Abc\Bundle\NotificationBundle\Iterator\ControlledMessageIterator;
-use Abc\ProcessControl\Controller;
+use Abc\ProcessControl\ControllerInterface;
 use Sonata\NotificationBundle\Iterator\MessageIteratorInterface;
 
 /**
@@ -20,7 +20,7 @@ use Sonata\NotificationBundle\Iterator\MessageIteratorInterface;
 class ControlledMessageIteratorTest extends \PHPUnit_Framework_TestCase
 {
 
-    /** @var Controller|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var ControllerInterface|\PHPUnit_Framework_MockObject_MockObject */
     private $controller;
     /** @var MessageIteratorInterface|\PHPUnit_Framework_MockObject_MockObject */
     private $iterator;
@@ -29,9 +29,9 @@ class ControlledMessageIteratorTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->controller = $this->getMock('Abc\ProcessControl\Controller');
-        $this->iterator  = $this->getMock('Sonata\NotificationBundle\Iterator\MessageIteratorInterface');
-        $this->subject = new ControlledMessageIterator($this->controller, $this->iterator);
+        $this->controller = $this->getMock('Abc\ProcessControl\ControllerInterface');
+        $this->iterator   = $this->getMock('Sonata\NotificationBundle\Iterator\MessageIteratorInterface');
+        $this->subject    = new ControlledMessageIterator($this->controller, $this->iterator);
     }
 
     public function testCurrent()
@@ -75,12 +75,9 @@ class ControlledMessageIteratorTest extends \PHPUnit_Framework_TestCase
             ->method('doExit')
             ->willReturn($doExit);
 
-        if($doExit)
-        {
+        if ($doExit) {
             $this->assertEquals(false, $this->subject->valid());
-        }
-        else
-        {
+        } else {
             $this->assertEquals($valid, $this->subject->valid());
         }
     }

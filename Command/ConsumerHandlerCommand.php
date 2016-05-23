@@ -10,7 +10,7 @@
 
 namespace Abc\Bundle\NotificationBundle\Command;
 
-use Abc\ProcessControl\Controller;
+use Abc\ProcessControl\ControllerInterface;
 use Sonata\NotificationBundle\Backend\BackendInterface;
 use Sonata\NotificationBundle\Backend\QueueDispatcherInterface;
 use Sonata\NotificationBundle\Command\ConsumerHandlerCommand as BaseCommand;
@@ -42,13 +42,10 @@ class ConsumerHandlerCommand extends BaseCommand
         $startDate = new \DateTime();
 
         $output->writeln(sprintf('[%s] <info>Checking listeners</info>', $startDate->format('r')));
-        foreach($this->getNotificationDispatcher()->getListeners() as $type => $listeners)
-        {
+        foreach ($this->getNotificationDispatcher()->getListeners() as $type => $listeners) {
             $output->writeln(sprintf(" - %s", $type));
-            foreach($listeners as $listener)
-            {
-                if(!$listener[0] instanceof ConsumerInterface)
-                {
+            foreach ($listeners as $listener) {
+                if (!$listener[0] instanceof ConsumerInterface) {
                     throw new \RuntimeException(sprintf('The registered service does not implement the ConsumerInterface (class=%s', get_class($listener[0])));
                 }
 
@@ -70,12 +67,9 @@ class ConsumerHandlerCommand extends BaseCommand
 
         $output->writeln(" done!");
 
-        if($type === null)
-        {
+        if ($type === null) {
             $output->writeln(sprintf("[%s] <info>Starting the backend handler</info> - %s", $startDate->format('r'), get_class($backend)));
-        }
-        else
-        {
+        } else {
             $output->writeln(sprintf("[%s] <info>Starting the backend handler</info> - %s (type: %s)", $startDate->format('r'), get_class($backend), $type));
         }
 
@@ -83,21 +77,16 @@ class ConsumerHandlerCommand extends BaseCommand
         $i                = 0;
         $startMemoryUsage = memory_get_usage(true);
 
-        try
-        {
-            do
-            {
-                if($i > 0)
-                {
+        try {
+            do {
+                if ($i > 0) {
                     usleep(500000);
                 }
 
                 $i++;
                 $this->iterate($input, $output, $backend, $showDetails, $startMemoryUsage);
-            } while(!$this->getProcessController()->doExit() && (!$input->getOption('iteration') || $i < (int)$input->getOption('iteration')));
-        }
-        catch(\Exception $e)
-        {
+            } while (!$this->getProcessController()->doExit() && (!$input->getOption('iteration') || $i < (int)$input->getOption('iteration')));
+        } catch (\Exception $e) {
             $output->writeln(sprintf("<error>KO - %s</error>", $e->getMessage()));
         }
 
@@ -114,15 +103,12 @@ class ConsumerHandlerCommand extends BaseCommand
     protected function iterate(InputInterface $input, OutputInterface $output, BackendInterface $backend, $showDetails, $startMemoryUsage)
     {
         $iterator = $backend->getIterator();
-        foreach($iterator as $message)
-        {
-            if(!$message instanceof MessageInterface)
-            {
+        foreach ($iterator as $message) {
+            if (!$message instanceof MessageInterface) {
                 throw new \RuntimeException('The iterator must return a MessageInterface instance');
             }
 
-            if(!$message->getType())
-            {
+            if (!$message->getType()) {
                 $output->write("<error>Skipping : no type defined </error>");
                 continue;
             }
@@ -131,8 +117,7 @@ class ConsumerHandlerCommand extends BaseCommand
             $output->write(sprintf("[%s] <info>%s</info>", $date->format('r'), $message->getType()));
             $memoryUsage = memory_get_usage(true);
 
-            try
-            {
+            try {
                 $start       = microtime(true);
                 $returnInfos = $backend->handle($message, $this->getNotificationDispatcher());
 
@@ -151,17 +136,12 @@ class ConsumerHandlerCommand extends BaseCommand
                     )
                 );
 
-                if($showDetails && null !== $returnInfos)
-                {
+                if ($showDetails && null !== $returnInfos) {
                     $output->writeln($returnInfos->getReturnMessage());
                 }
-            }
-            catch(HandlingException $e)
-            {
+            } catch (HandlingException $e) {
                 $output->writeln(sprintf("<error>KO! - %s</error>", $e->getPrevious()->getMessage()));
-            }
-            catch(\Exception $e)
-            {
+            } catch (\Exception $e) {
                 $output->writeln(sprintf("<error>KO! - %s</error>", $e->getMessage()));
             }
 
@@ -176,12 +156,9 @@ class ConsumerHandlerCommand extends BaseCommand
      */
     private function formatMemory($memory)
     {
-        if($memory < 1024)
-        {
+        if ($memory < 1024) {
             return $memory . "b";
-        }
-        elseif($memory < 1048576)
-        {
+        } elseif ($memory < 1048576) {
             return round($memory / 1024, 2) . "Kb";
         }
 
@@ -197,20 +174,17 @@ class ConsumerHandlerCommand extends BaseCommand
     {
         $backend = $this->getContainer()->get('sonata.notification.backend');
 
-        if($type && !array_key_exists($type, $this->getNotificationDispatcher()->getListeners()))
-        {
+        if ($type && !array_key_exists($type, $this->getNotificationDispatcher()->getListeners())) {
             throw new \RuntimeException(
                 sprintf("The type `%s` does not exist, available types: %s", $type, implode(", ", array_keys($this->getNotificationDispatcher()->getListeners())))
             );
         }
 
-        if($type !== null && !$backend instanceof QueueDispatcherInterface)
-        {
+        if ($type !== null && !$backend instanceof QueueDispatcherInterface) {
             throw new \RuntimeException(sprintf("Unable to use the provided type %s with a non QueueDispatcherInterface backend", $type));
         }
 
-        if($backend instanceof QueueDispatcherInterface)
-        {
+        if ($backend instanceof QueueDispatcherInterface) {
             return $backend->getBackend($type);
         }
 
@@ -234,7 +208,7 @@ class ConsumerHandlerCommand extends BaseCommand
     }
 
     /**
-     * @return Controller
+     * @return ControllerInterface
      */
     public function getProcessController()
     {
