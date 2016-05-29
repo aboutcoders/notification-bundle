@@ -25,7 +25,5 @@ class AbcNotificationExtension extends Extension
     {
         $configuration = new Configuration();
         $config        = $this->processConfiguration($configuration, $configs);
-
-        $container->setParameter('abc.notification.process_control', $config['process_control']);
     }
-} 
+}

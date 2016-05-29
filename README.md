@@ -32,7 +32,7 @@ public function registerBundles()
 }
 ```
 
-Following the installation instructions of the [SonataNotificationBundle](https://github.com/sonata-project/SonataNotificationBundle) you will extend the bundle as a part of that define the message entity. Since this bundle extends [SonataNotificationBundle](https://github.com/sonata-project/SonataNotificationBundle) you have to extend from this bundle in order to make it work.
+Following the installation instructions of the [SonataNotificationBundle](https://github.com/sonata-project/SonataNotificationBundle) you will create or generate a bundle within your application that extends from the SonataNotificationBundle. Since this bundle also extends from the SonataNotificationBundle you have to extend your created/generated bundle from this bundle instead of the SonataNotificationBundle.
 
 ```php
 class MySonataNotificationBundle extends Bundle
@@ -46,3 +46,7 @@ class MySonataNotificationBundle extends Bundle
     }
 }
 ```
+
+ToDo:
+
+- Provide a pull request for the [SonataNotificationBundle](https://github.com/sonata-project/SonataNotificationBundle) that allows to define custom message managers/iterators and thereby make this bundle obsolete

@@ -21,19 +21,24 @@ use Sonata\NotificationBundle\Iterator\MessageIteratorInterface;
  */
 class ControlledMessageIterator implements MessageIteratorInterface
 {
-    /** @var ControllerInterface */
+    /**
+     * @var ControllerInterface
+     */
     private $controller;
-    /** @var MessageIteratorInterface */
+
+    /**
+     * @var MessageIteratorInterface
+     */
     private $messageIterator;
 
     /**
      * @param ControllerInterface      $controller
-     * @param MessageIteratorInterface $smessageIterator
+     * @param MessageIteratorInterface $messageIterator
      */
-    function __construct(ControllerInterface $controller, MessageIteratorInterface $smessageIterator)
+    function __construct(ControllerInterface $controller, MessageIteratorInterface $messageIterator)
     {
         $this->controller      = $controller;
-        $this->messageIterator = $smessageIterator;
+        $this->messageIterator = $messageIterator;
     }
 
     /**
@@ -91,4 +96,4 @@ class ControlledMessageIterator implements MessageIteratorInterface
 
         return $this->messageIterator->isBufferEmpty();
     }
-} 
+}
