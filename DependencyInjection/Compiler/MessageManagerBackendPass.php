@@ -41,7 +41,7 @@ class MessageManagerBackendPass implements CompilerPassInterface
      */
     public function __construct(
         $backendService = 'sonata.notification.backend.doctrine',
-        $iteratorService = 'application.sonata.notification.doctrine.message_iterator'
+        $iteratorService = 'funke.notification.doctrine.message_iterator'
     )
     {
         $this->backendService  = $backendService;
@@ -70,11 +70,11 @@ class MessageManagerBackendPass implements CompilerPassInterface
                 $qBackendDefinition = $container->getDefinition($backendId);
 
                 // create a custom iterator
-                $iteratorId = $this->createIteratorDefinition($container, $definition->getArgument(0), $qBackendDefinition->getArgument(4), $qBackendDefinition->getArgument(5));
+                $iteratorId = $this->createIteratorDefinition($backendId, $container, $definition->getArgument(0), $qBackendDefinition->getArgument(4), $qBackendDefinition->getArgument(5));
 
                 // decorate backend with custom iterator
                 $iteratorAwareBackendDefinition = new Definition(IteratorAwareMessageManagerBackend::class, $qBackendDefinition->getArguments());
-                $iteratorAwareBackendDefinition->addMethodCall('setIterator', array(new Reference($iteratorId)));
+                $iteratorAwareBackendDefinition->addMethodCall('setIterator', [new Reference($iteratorId)]);
 
                 // replace default backend with custom backend
                 $container->setDefinition($backendId, $iteratorAwareBackendDefinition);
@@ -83,16 +83,17 @@ class MessageManagerBackendPass implements CompilerPassInterface
     }
 
     /**
+     * @param string           $backendId
      * @param ContainerBuilder $container
      * @param Reference        $manager The reference to the message manager within the container
      * @param int              $batchSize
      * @param array            $types
      * @return string The service id of the created iterator
      */
-    protected function createIteratorDefinition(ContainerBuilder $container, $manager, $batchSize, $types)
+    protected function createIteratorDefinition($backendId, ContainerBuilder $container, $manager, $batchSize, $types)
     {
-        $iteratorId = $this->iteratorService;
-        $definition = new Definition(MessageManagerMessageIterator::class, array($manager, $types, $batchSize));
+        $iteratorId = $this->iteratorService . '.' . $backendId;
+        $definition = new Definition(MessageManagerMessageIterator::class, [$manager, $types, $batchSize]);
         $definition->setPublic(false);
 
         $container->setDefinition($iteratorId, $definition);
@@ -101,7 +102,7 @@ class MessageManagerBackendPass implements CompilerPassInterface
             return $iteratorId;
         }
 
-        $controlledIteratorId = 'application.sonata.notification.doctrine.controlled_message_iterator';
+        $controlledIteratorId = 'funke.notification.doctrine.controlled_message_iterator' . '.' . $backendId;
         $definition           = new Definition(ControlledMessageIterator::class, [
             new Reference('abc.process_control.controller'),
             new Reference($iteratorId)
